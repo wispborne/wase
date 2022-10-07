@@ -79,9 +79,24 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
           centerTitle: true,
-          leading: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: const [
-            Padding(padding: EdgeInsets.all(10), child: Text("File")),
-          ])),
+          leading: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: //Row(children: [
+                        PopupMenuButton(
+                            offset: const Offset(0, 19),
+                            position: PopupMenuPosition.under,
+                            itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    child: Text("Open"),
+                                    height: 30,
+                                  )
+                                ],
+                            child: Container(padding: EdgeInsets.all(8), child: Text("File")))),
+              ])),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -102,8 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton(onPressed: () async => chooseModFolder(), child: const Text("Open Files")),
-          ],
+            ElevatedButton(onPressed: () async => chooseModFolder(), child: const Text("Load Mod Folder")),
+            ElevatedButton(onPressed: () async => chooseEntity(), child: const Text("Load Data")),
+          ]
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -121,5 +137,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     print(dir);
+  }
+
+  chooseEntity() async {
+    FilePickerResult? files = await FilePicker.platform.pickFiles(
+      dialogTitle: "Choose file",
+
+      // initialDirectory: "C:\\Program Files (x86)\\Fractal Softworks\\Starsector\\mods",
+    );
+
+    print(files?.files);
   }
 }
