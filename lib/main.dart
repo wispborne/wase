@@ -1,6 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
+import 'menu.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -74,29 +76,32 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
+      appBar:
+      AppBar(
+        leading: WaseMenu()
+      ),
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
-          centerTitle: true,
-          leading: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: //Row(children: [
-                        PopupMenuButton(
-                            offset: const Offset(0, 19),
-                            position: PopupMenuPosition.under,
-                            itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    child: Text("Open"),
-                                    height: 30,
-                                  )
-                                ],
-                            child: Container(padding: EdgeInsets.all(8), child: Text("File")))),
-              ])),
+          // title: Text(widget.title),
+          // centerTitle: true,
+          // leading: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       Padding(
+          //           padding: const EdgeInsets.only(left: 10),
+          //           child: //Row(children: [
+          //               PopupMenuButton(
+          //                   offset: const Offset(0, 19),
+          //                   position: PopupMenuPosition.under,
+          //                   itemBuilder: (context) => [
+          //                         PopupMenuItem(
+          //                           child: Text("Open"),
+          //                           height: 30,
+          //                         )
+          //                       ],
+          //                   child: Container(padding: EdgeInsets.all(8), child: Text("File")))),
+          //     ])),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
@@ -128,24 +133,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  chooseModFolder() async {
-    String? dir = await FilePicker.platform.getDirectoryPath(
-      dialogTitle: "Choose mod folder",
-      initialDirectory: "C:\\Program Files (x86)\\Fractal Softworks\\Starsector\\mods",
-    );
-
-    print(dir);
-  }
-
-  chooseEntity() async {
-    FilePickerResult? files = await FilePicker.platform.pickFiles(
-      dialogTitle: "Choose file",
-
-      // initialDirectory: "C:\\Program Files (x86)\\Fractal Softworks\\Starsector\\mods",
-    );
-
-    print(files?.files);
   }
 }
