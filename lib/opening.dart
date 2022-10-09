@@ -2,18 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wase/appState.dart';
 import 'package:wase/models/ship.dart';
 
 class Opening {
-  openChooseDataDialog() {
-    openChooseDataDialogAsync();
-  }
-
-  openChooseDataDialogAsync() async {
+  openChooseDataDialog(WidgetRef ref) async {
     FilePickerResult? files = await FilePicker.platform.pickFiles(
       dialogTitle: "Choose file",
-
-      // initialDirectory: "C:\\Program Files (x86)\\Fractal Softworks\\Starsector\\mods",
     );
 
     print(files?.files);
@@ -23,6 +19,8 @@ class Opening {
       print("No files?");
     }
 
-    print(Ship.fromJson(jsonDecode(await File(firstFile!).readAsString())));
+    var ship = Ship.fromJson(jsonDecode(await File(firstFile!).readAsString()));
+    print("Loaded $ship");
+    ref.read(AppState.ship.notifier).update((state) => ship);
   }
 }

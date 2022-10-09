@@ -1,16 +1,17 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/opening.dart';
 import 'package:wase/shortcuts.dart';
 
-class WaseMenu extends StatefulWidget {
+class WaseMenu extends ConsumerStatefulWidget {
   const WaseMenu({Key? key}) : super(key: key);
 
   @override
-  State<WaseMenu> createState() => _MenuState();
+  ConsumerState<WaseMenu> createState() => _MenuState();
 }
 
-class _MenuState extends State<WaseMenu> {
+class _MenuState extends ConsumerState<WaseMenu> {
   @override
   Widget build(BuildContext context) {
     return MenuBar(children: [
@@ -20,8 +21,8 @@ class _MenuState extends State<WaseMenu> {
             child: Text("Open mod folder"),
           ),
           MenuItemButton(
-            onPressed: Opening().openChooseDataDialog,
-            shortcut: WaseShortcutBindings.openDataShortcut.key,
+            onPressed: () => Opening().openChooseDataDialog(ref),
+            shortcut: WaseShortcutBindings.openDataShortcut(ref).key,
             child: Text("Open data"),
           ),
         ],

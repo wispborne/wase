@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/opening.dart';
 
 class WaseShortcutBindings {
-  static getShortcuts() {
-    return Map.fromEntries([openDataShortcut].map((e) => MapEntry(e.key, e.action)));
+  static getShortcuts(WidgetRef ref) {
+    return Map.fromEntries([openDataShortcut(ref)].map((e) => MapEntry(e.key, e.action)));
   }
 
-  static Shortcut openDataShortcut = Shortcut(SingleActivator(LogicalKeyboardKey.keyO, control: true), Opening().openChooseDataDialog);
+  static Shortcut openDataShortcut(WidgetRef ref) {
+    return Shortcut(SingleActivator(LogicalKeyboardKey.keyO, control: true), () => {Opening().openChooseDataDialog(ref)});
+  }
 }
 
 class Shortcut {

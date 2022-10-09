@@ -1,47 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wase/appState.dart';
 import 'package:wase/shortcuts.dart';
+import 'package:wase/utils.dart';
 
 import 'menu.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final orange = createMaterialColor(const Color.fromARGB(255, 255, 186, 8));
+    final pink = createMaterialColor(const Color.fromARGB(255, 222, 13, 146));
+    final useCustomDarkTheme = true;
+
     return MaterialApp(
       title: 'Flutter Demo',
       themeMode: ThemeMode.dark,
-      darkTheme: ThemeData.dark(useMaterial3: true),
+      darkTheme: useCustomDarkTheme
+          ? ThemeData.from(
+              colorScheme: ColorScheme.dark(primary: pink, background: Colors.grey[900]!, surface: Colors.grey[850]!), useMaterial3: true)
+          : ThemeData.dark(useMaterial3: true),
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: orange,
       ),
       home: CallbackShortcuts(
-          bindings: WaseShortcutBindings.getShortcuts(), child: Focus(autofocus: true, child: const MyHomePage(title: 'W.A.S.E'))),
+          bindings: WaseShortcutBindings.getShortcuts(ref), child: Focus(autofocus: true, child: const MyHomePage(title: 'W.A.S.E'))),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  ConsumerState<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: [
-          Row(children: [Expanded(child: WaseMenu())])
+          Row(children: [Expanded(child: WaseMenu())]),
+          Text(ref.watch(AppState.ship)?.toString() ?? "")
         ],
       ),
     );

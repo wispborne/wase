@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   file_picker: ^5.2.0+1
   json_annotation: ^4.7.0
+  flutter_riverpod: ^2.0.2
 
 dev_dependencies:
   json_serializable: ^6.5.0
