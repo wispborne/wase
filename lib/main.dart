@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +14,7 @@ import 'menu.dart';
 void main() {
   Fimber.plantTree(DebugTree());
   Fimber.i("Logging started.");
+  Fimber.i("Platform: ${Platform.operatingSystem} ${Platform.operatingSystemVersion}.");
   runApp(ProviderScope(observers: [SettingSaver()], child: const MyApp()));
 }
 

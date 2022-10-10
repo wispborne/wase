@@ -4,6 +4,8 @@ import 'package:fimber/fimber.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' as p;
+import 'package:wase/loading/loaders.dart';
+import 'package:wase/models/ship.dart';
 import 'package:wase/settings.dart';
 
 loadGameData(WidgetRef ref) async {
@@ -15,7 +17,7 @@ loadGameData(WidgetRef ref) async {
   if (gameDir == null || !Directory(gameDir).existsSync()) {
     throw Exception("couldn't find starsector");
   } else if (settings.gameDir == null) {
-     // Set state to default path because it exists.
+    // Set state to default path because it exists.
     ref.read(appSettings.notifier).update((state) => state.copyWith(gameDir: defaultGamePath()));
   }
 
@@ -37,9 +39,17 @@ loadVanillaData(Directory gameDataPath) async {
   final stockHullmodsDir = Directory(p.join(path, "data/hullmods/"));
   final stockConfigDir = Directory(p.join(path, "data/config/"));
 
-  stockShipsDir.list(recursive: true).where((event) => p.extension(event.path) == ".ship").forEach((element) {
-    Fimber.d(element.path);
-  });
+  final shipTimer = Stopwatch()..start();
+  await loadShips(stockShipsDir);
+  Fimber.d("Took ${shipTimer.elapsed}ms to load vanilla ships.");
+}
+
+Future<List<Ship>> loadShips(Directory folder) async {
+  Fimber.i("Loading ships from $folder");
+  return folder.list(recursive: true).where((event) => p.extension(event.path) == ".ship").asyncMap((file) async {
+    Fimber.d("Loading ship ${file.path}");
+    return loadShip(File(file.path));
+  }).toList();
 }
 
 String? defaultGamePath() {
@@ -47,7 +57,7 @@ String? defaultGamePath() {
     // todo read from registry
     return "C:/Program Files (x86)/Fractal Softworks/Starsector";
   } else if (Platform.isMacOS) {
-    "/Applications/Starsector.app";
+    return "/Applications/Starsector.app";
   } else if (kIsWeb) {
     return null; // huh
   }
@@ -59,7 +69,7 @@ String gameFilesRelPath() {
   if (Platform.isWindows) {
     return "starsector-core";
   } else if (Platform.isMacOS) {
-    "Contents/Resources/Java";
+    return "Contents/Resources/Java";
   } else if (kIsWeb) {
     return "null"; // huh
   }
