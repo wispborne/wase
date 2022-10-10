@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/appState.dart';
+import 'package:wase/settings.dart';
 import 'package:wase/shortcuts.dart';
 import 'package:wase/utils.dart';
 
 import 'menu.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(ProviderScope(observers: [SettingSaver()], child: const MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -17,7 +18,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final orange = createMaterialColor(const Color.fromARGB(255, 255, 186, 8));
     final pink = createMaterialColor(const Color.fromARGB(255, 222, 13, 146));
-    final useCustomDarkTheme = true;
+    const useCustomDarkTheme = true;
 
     return MaterialApp(
       title: 'Flutter Demo',
@@ -31,7 +32,7 @@ class MyApp extends ConsumerWidget {
         primarySwatch: orange,
       ),
       home: CallbackShortcuts(
-          bindings: WaseShortcutBindings.getShortcuts(ref), child: Focus(autofocus: true, child: const MyHomePage(title: 'W.A.S.E'))),
+          bindings: WaseShortcutBindings.getShortcuts(ref), child: const Focus(autofocus: true, child: MyHomePage(title: 'W.A.S.E'))),
     );
   }
 }
@@ -51,7 +52,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
     return Scaffold(
       body: Column(
         children: [
-          Row(children: [Expanded(child: WaseMenu())]),
+          Row(children: [const Expanded(child: WaseMenu())]),
           Text(ref.watch(AppState.ship)?.toString() ?? "")
         ],
       ),
