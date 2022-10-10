@@ -16,13 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Settings {
-  String? get images_dir => throw _privateConstructorUsedError;
-  String? get weapon_images_dir => throw _privateConstructorUsedError;
-  String? get skin_images_dir => throw _privateConstructorUsedError;
-  String? get data_dir => throw _privateConstructorUsedError;
-  String? get variant_dir => throw _privateConstructorUsedError;
-  String? get skin_dir => throw _privateConstructorUsedError;
-  String? get weapon_dir => throw _privateConstructorUsedError;
+  bool get hideVanillaData => throw _privateConstructorUsedError;
+  String? get gameDir => throw _privateConstructorUsedError;
+  String? get imagesDir => throw _privateConstructorUsedError;
+  String? get weaponImagesDir => throw _privateConstructorUsedError;
+  String? get skinImagesDir => throw _privateConstructorUsedError;
+  String? get dataDir => throw _privateConstructorUsedError;
+  String? get variantDir => throw _privateConstructorUsedError;
+  String? get skinDir => throw _privateConstructorUsedError;
+  String? get weaponDir => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsCopyWith<Settings> get copyWith =>
@@ -34,13 +36,15 @@ abstract class $SettingsCopyWith<$Res> {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) then) =
       _$SettingsCopyWithImpl<$Res>;
   $Res call(
-      {String? images_dir,
-      String? weapon_images_dir,
-      String? skin_images_dir,
-      String? data_dir,
-      String? variant_dir,
-      String? skin_dir,
-      String? weapon_dir});
+      {bool hideVanillaData,
+      String? gameDir,
+      String? imagesDir,
+      String? weaponImagesDir,
+      String? skinImagesDir,
+      String? dataDir,
+      String? variantDir,
+      String? skinDir,
+      String? weaponDir});
 }
 
 /// @nodoc
@@ -53,42 +57,52 @@ class _$SettingsCopyWithImpl<$Res> implements $SettingsCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? images_dir = freezed,
-    Object? weapon_images_dir = freezed,
-    Object? skin_images_dir = freezed,
-    Object? data_dir = freezed,
-    Object? variant_dir = freezed,
-    Object? skin_dir = freezed,
-    Object? weapon_dir = freezed,
+    Object? hideVanillaData = freezed,
+    Object? gameDir = freezed,
+    Object? imagesDir = freezed,
+    Object? weaponImagesDir = freezed,
+    Object? skinImagesDir = freezed,
+    Object? dataDir = freezed,
+    Object? variantDir = freezed,
+    Object? skinDir = freezed,
+    Object? weaponDir = freezed,
   }) {
     return _then(_value.copyWith(
-      images_dir: images_dir == freezed
-          ? _value.images_dir
-          : images_dir // ignore: cast_nullable_to_non_nullable
+      hideVanillaData: hideVanillaData == freezed
+          ? _value.hideVanillaData
+          : hideVanillaData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      gameDir: gameDir == freezed
+          ? _value.gameDir
+          : gameDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      weapon_images_dir: weapon_images_dir == freezed
-          ? _value.weapon_images_dir
-          : weapon_images_dir // ignore: cast_nullable_to_non_nullable
+      imagesDir: imagesDir == freezed
+          ? _value.imagesDir
+          : imagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      skin_images_dir: skin_images_dir == freezed
-          ? _value.skin_images_dir
-          : skin_images_dir // ignore: cast_nullable_to_non_nullable
+      weaponImagesDir: weaponImagesDir == freezed
+          ? _value.weaponImagesDir
+          : weaponImagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      data_dir: data_dir == freezed
-          ? _value.data_dir
-          : data_dir // ignore: cast_nullable_to_non_nullable
+      skinImagesDir: skinImagesDir == freezed
+          ? _value.skinImagesDir
+          : skinImagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      variant_dir: variant_dir == freezed
-          ? _value.variant_dir
-          : variant_dir // ignore: cast_nullable_to_non_nullable
+      dataDir: dataDir == freezed
+          ? _value.dataDir
+          : dataDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      skin_dir: skin_dir == freezed
-          ? _value.skin_dir
-          : skin_dir // ignore: cast_nullable_to_non_nullable
+      variantDir: variantDir == freezed
+          ? _value.variantDir
+          : variantDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      weapon_dir: weapon_dir == freezed
-          ? _value.weapon_dir
-          : weapon_dir // ignore: cast_nullable_to_non_nullable
+      skinDir: skinDir == freezed
+          ? _value.skinDir
+          : skinDir // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weaponDir: weaponDir == freezed
+          ? _value.weaponDir
+          : weaponDir // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -101,13 +115,15 @@ abstract class _$$_SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res> {
       __$$_SettingsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? images_dir,
-      String? weapon_images_dir,
-      String? skin_images_dir,
-      String? data_dir,
-      String? variant_dir,
-      String? skin_dir,
-      String? weapon_dir});
+      {bool hideVanillaData,
+      String? gameDir,
+      String? imagesDir,
+      String? weaponImagesDir,
+      String? skinImagesDir,
+      String? dataDir,
+      String? variantDir,
+      String? skinDir,
+      String? weaponDir});
 }
 
 /// @nodoc
@@ -122,42 +138,52 @@ class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? images_dir = freezed,
-    Object? weapon_images_dir = freezed,
-    Object? skin_images_dir = freezed,
-    Object? data_dir = freezed,
-    Object? variant_dir = freezed,
-    Object? skin_dir = freezed,
-    Object? weapon_dir = freezed,
+    Object? hideVanillaData = freezed,
+    Object? gameDir = freezed,
+    Object? imagesDir = freezed,
+    Object? weaponImagesDir = freezed,
+    Object? skinImagesDir = freezed,
+    Object? dataDir = freezed,
+    Object? variantDir = freezed,
+    Object? skinDir = freezed,
+    Object? weaponDir = freezed,
   }) {
     return _then(_$_Settings(
-      images_dir: images_dir == freezed
-          ? _value.images_dir
-          : images_dir // ignore: cast_nullable_to_non_nullable
+      hideVanillaData: hideVanillaData == freezed
+          ? _value.hideVanillaData
+          : hideVanillaData // ignore: cast_nullable_to_non_nullable
+              as bool,
+      gameDir: gameDir == freezed
+          ? _value.gameDir
+          : gameDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      weapon_images_dir: weapon_images_dir == freezed
-          ? _value.weapon_images_dir
-          : weapon_images_dir // ignore: cast_nullable_to_non_nullable
+      imagesDir: imagesDir == freezed
+          ? _value.imagesDir
+          : imagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      skin_images_dir: skin_images_dir == freezed
-          ? _value.skin_images_dir
-          : skin_images_dir // ignore: cast_nullable_to_non_nullable
+      weaponImagesDir: weaponImagesDir == freezed
+          ? _value.weaponImagesDir
+          : weaponImagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      data_dir: data_dir == freezed
-          ? _value.data_dir
-          : data_dir // ignore: cast_nullable_to_non_nullable
+      skinImagesDir: skinImagesDir == freezed
+          ? _value.skinImagesDir
+          : skinImagesDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      variant_dir: variant_dir == freezed
-          ? _value.variant_dir
-          : variant_dir // ignore: cast_nullable_to_non_nullable
+      dataDir: dataDir == freezed
+          ? _value.dataDir
+          : dataDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      skin_dir: skin_dir == freezed
-          ? _value.skin_dir
-          : skin_dir // ignore: cast_nullable_to_non_nullable
+      variantDir: variantDir == freezed
+          ? _value.variantDir
+          : variantDir // ignore: cast_nullable_to_non_nullable
               as String?,
-      weapon_dir: weapon_dir == freezed
-          ? _value.weapon_dir
-          : weapon_dir // ignore: cast_nullable_to_non_nullable
+      skinDir: skinDir == freezed
+          ? _value.skinDir
+          : skinDir // ignore: cast_nullable_to_non_nullable
+              as String?,
+      weaponDir: weaponDir == freezed
+          ? _value.weaponDir
+          : weaponDir // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -167,32 +193,39 @@ class __$$_SettingsCopyWithImpl<$Res> extends _$SettingsCopyWithImpl<$Res>
 
 class _$_Settings implements _Settings {
   _$_Settings(
-      {this.images_dir,
-      this.weapon_images_dir,
-      this.skin_images_dir,
-      this.data_dir,
-      this.variant_dir,
-      this.skin_dir,
-      this.weapon_dir});
+      {this.hideVanillaData = false,
+      this.gameDir,
+      this.imagesDir,
+      this.weaponImagesDir,
+      this.skinImagesDir,
+      this.dataDir,
+      this.variantDir,
+      this.skinDir,
+      this.weaponDir});
 
   @override
-  final String? images_dir;
+  @JsonKey()
+  final bool hideVanillaData;
   @override
-  final String? weapon_images_dir;
+  final String? gameDir;
   @override
-  final String? skin_images_dir;
+  final String? imagesDir;
   @override
-  final String? data_dir;
+  final String? weaponImagesDir;
   @override
-  final String? variant_dir;
+  final String? skinImagesDir;
   @override
-  final String? skin_dir;
+  final String? dataDir;
   @override
-  final String? weapon_dir;
+  final String? variantDir;
+  @override
+  final String? skinDir;
+  @override
+  final String? weaponDir;
 
   @override
   String toString() {
-    return 'Settings(images_dir: $images_dir, weapon_images_dir: $weapon_images_dir, skin_images_dir: $skin_images_dir, data_dir: $data_dir, variant_dir: $variant_dir, skin_dir: $skin_dir, weapon_dir: $weapon_dir)';
+    return 'Settings(hideVanillaData: $hideVanillaData, gameDir: $gameDir, imagesDir: $imagesDir, weaponImagesDir: $weaponImagesDir, skinImagesDir: $skinImagesDir, dataDir: $dataDir, variantDir: $variantDir, skinDir: $skinDir, weaponDir: $weaponDir)';
   }
 
   @override
@@ -201,29 +234,32 @@ class _$_Settings implements _Settings {
         (other.runtimeType == runtimeType &&
             other is _$_Settings &&
             const DeepCollectionEquality()
-                .equals(other.images_dir, images_dir) &&
+                .equals(other.hideVanillaData, hideVanillaData) &&
+            const DeepCollectionEquality().equals(other.gameDir, gameDir) &&
+            const DeepCollectionEquality().equals(other.imagesDir, imagesDir) &&
             const DeepCollectionEquality()
-                .equals(other.weapon_images_dir, weapon_images_dir) &&
+                .equals(other.weaponImagesDir, weaponImagesDir) &&
             const DeepCollectionEquality()
-                .equals(other.skin_images_dir, skin_images_dir) &&
-            const DeepCollectionEquality().equals(other.data_dir, data_dir) &&
+                .equals(other.skinImagesDir, skinImagesDir) &&
+            const DeepCollectionEquality().equals(other.dataDir, dataDir) &&
             const DeepCollectionEquality()
-                .equals(other.variant_dir, variant_dir) &&
-            const DeepCollectionEquality().equals(other.skin_dir, skin_dir) &&
-            const DeepCollectionEquality()
-                .equals(other.weapon_dir, weapon_dir));
+                .equals(other.variantDir, variantDir) &&
+            const DeepCollectionEquality().equals(other.skinDir, skinDir) &&
+            const DeepCollectionEquality().equals(other.weaponDir, weaponDir));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(images_dir),
-      const DeepCollectionEquality().hash(weapon_images_dir),
-      const DeepCollectionEquality().hash(skin_images_dir),
-      const DeepCollectionEquality().hash(data_dir),
-      const DeepCollectionEquality().hash(variant_dir),
-      const DeepCollectionEquality().hash(skin_dir),
-      const DeepCollectionEquality().hash(weapon_dir));
+      const DeepCollectionEquality().hash(hideVanillaData),
+      const DeepCollectionEquality().hash(gameDir),
+      const DeepCollectionEquality().hash(imagesDir),
+      const DeepCollectionEquality().hash(weaponImagesDir),
+      const DeepCollectionEquality().hash(skinImagesDir),
+      const DeepCollectionEquality().hash(dataDir),
+      const DeepCollectionEquality().hash(variantDir),
+      const DeepCollectionEquality().hash(skinDir),
+      const DeepCollectionEquality().hash(weaponDir));
 
   @JsonKey(ignore: true)
   @override
@@ -233,28 +269,34 @@ class _$_Settings implements _Settings {
 
 abstract class _Settings implements Settings {
   factory _Settings(
-      {final String? images_dir,
-      final String? weapon_images_dir,
-      final String? skin_images_dir,
-      final String? data_dir,
-      final String? variant_dir,
-      final String? skin_dir,
-      final String? weapon_dir}) = _$_Settings;
+      {final bool hideVanillaData,
+      final String? gameDir,
+      final String? imagesDir,
+      final String? weaponImagesDir,
+      final String? skinImagesDir,
+      final String? dataDir,
+      final String? variantDir,
+      final String? skinDir,
+      final String? weaponDir}) = _$_Settings;
 
   @override
-  String? get images_dir;
+  bool get hideVanillaData;
   @override
-  String? get weapon_images_dir;
+  String? get gameDir;
   @override
-  String? get skin_images_dir;
+  String? get imagesDir;
   @override
-  String? get data_dir;
+  String? get weaponImagesDir;
   @override
-  String? get variant_dir;
+  String? get skinImagesDir;
   @override
-  String? get skin_dir;
+  String? get dataDir;
   @override
-  String? get weapon_dir;
+  String? get variantDir;
+  @override
+  String? get skinDir;
+  @override
+  String? get weaponDir;
   @override
   @JsonKey(ignore: true)
   _$$_SettingsCopyWith<_$_Settings> get copyWith =>

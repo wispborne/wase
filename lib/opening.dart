@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:fimber/fimber.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/appState.dart';
 import 'package:wase/models/programMode.dart';
@@ -53,10 +54,10 @@ class Opening {
 void loadShip(WidgetRef ref, file) async {
   var json = jsonDecode(await file.readAsString());
   var ship = Ship.fromJson(json);
-  print("Loaded $ship");
+  Fimber.d("Loaded $ship");
 
-  ref.read(appSettings.notifier).update((state) => state.copyWith(data_dir: file.parent.absolute.path));
+  ref.read(appSettings.notifier).update((state) => state.copyWith(dataDir: file.parent.absolute.path));
 
   ref.read(AppState.ship.notifier).update((state) => ship);
-  ref.read(AppState.csvRow.notifier).update((state) => ship.hullId);
+  // ref.read(AppState.csvRow.notifier).update((state) => ship.hullId);
 }

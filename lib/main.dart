@@ -1,6 +1,8 @@
+import 'package:fimber/fimber.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/appState.dart';
+import 'package:wase/loading/loadVanilla.dart';
 import 'package:wase/settings.dart';
 import 'package:wase/shortcuts.dart';
 import 'package:wase/utils.dart';
@@ -8,6 +10,8 @@ import 'package:wase/utils.dart';
 import 'menu.dart';
 
 void main() {
+  Fimber.plantTree(DebugTree());
+  Fimber.i("Logging started.");
   runApp(ProviderScope(observers: [SettingSaver()], child: const MyApp()));
 }
 
@@ -47,6 +51,7 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,5 +62,12 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         ],
       ),
     );
+  }
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      loadGameData(ref);
+    });
   }
 }
