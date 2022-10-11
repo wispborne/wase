@@ -12,7 +12,7 @@ import 'package:wase/utils.dart';
 import 'menu.dart';
 
 void main() {
-  Fimber.plantTree(DebugTree());
+  Fimber.plantTree(DebugTree.elapsed(logLevels: ["V", "D", "I", "W", "E"], useColors: true));
   Fimber.i("Logging started.");
   Fimber.i("Platform: ${Platform.operatingSystem} ${Platform.operatingSystemVersion}.");
   runApp(ProviderScope(observers: [SettingSaver()], child: const MyApp()));
