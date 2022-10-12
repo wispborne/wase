@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/appState.dart';
 import 'package:wase/loading/loadVanilla.dart';
-import 'package:wase/settings.dart';
+import 'package:wase/models/settings.dart';
 import 'package:wase/shortcuts.dart';
 import 'package:wase/utils.dart';
 

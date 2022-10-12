@@ -31,7 +31,7 @@ mixin _$Variant {
   double get quality => throw _privateConstructorUsedError;
   List<String> get permaMods => throw _privateConstructorUsedError;
   List<String> get wings => throw _privateConstructorUsedError;
-  Map<String, String> get modules => throw _privateConstructorUsedError;
+  List<Pair<String, String>> get modules => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +54,7 @@ abstract class $VariantCopyWith<$Res> {
       double quality,
       List<String> permaMods,
       List<String> wings,
-      Map<String, String> modules});
+      List<Pair<String, String>> modules});
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ class _$VariantCopyWithImpl<$Res> implements $VariantCopyWith<$Res> {
       modules: modules == freezed
           ? _value.modules
           : modules // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as List<Pair<String, String>>,
     ));
   }
 }
@@ -151,7 +151,7 @@ abstract class _$$_VariantCopyWith<$Res> implements $VariantCopyWith<$Res> {
       double quality,
       List<String> permaMods,
       List<String> wings,
-      Map<String, String> modules});
+      List<Pair<String, String>> modules});
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class __$$_VariantCopyWithImpl<$Res> extends _$VariantCopyWithImpl<$Res>
       modules: modules == freezed
           ? _value._modules
           : modules // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as List<Pair<String, String>>,
     ));
   }
 }
@@ -246,7 +246,7 @@ class _$_Variant implements _Variant {
       this.quality = 1.0,
       final List<String> permaMods = const [],
       final List<String> wings = const [],
-      final Map<String, String> modules = const {}})
+      final List<Pair<String, String>> modules = const []})
       : _hullMods = hullMods,
         _weaponGroups = weaponGroups,
         _permaMods = permaMods,
@@ -309,12 +309,12 @@ class _$_Variant implements _Variant {
     return EqualUnmodifiableListView(_wings);
   }
 
-  final Map<String, String> _modules;
+  final List<Pair<String, String>> _modules;
   @override
   @JsonKey()
-  Map<String, String> get modules {
+  List<Pair<String, String>> get modules {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_modules);
+    return EqualUnmodifiableListView(_modules);
   }
 
   @override
@@ -389,7 +389,7 @@ abstract class _Variant implements Variant {
       final double quality,
       final List<String> permaMods,
       final List<String> wings,
-      final Map<String, String> modules}) = _$_Variant;
+      final List<Pair<String, String>> modules}) = _$_Variant;
 
   factory _Variant.fromJson(Map<String, dynamic> json) = _$_Variant.fromJson;
 
@@ -416,7 +416,7 @@ abstract class _Variant implements Variant {
   @override
   List<String> get wings;
   @override
-  Map<String, String> get modules;
+  List<Pair<String, String>> get modules;
   @override
   @JsonKey(ignore: true)
   _$$_VariantCopyWith<_$_Variant> get copyWith =>

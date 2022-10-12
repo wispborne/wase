@@ -34,3 +34,7 @@ analyzer:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+# for freezed
+  errors:
+    invalid_annotation_target: ignore

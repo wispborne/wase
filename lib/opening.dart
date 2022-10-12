@@ -6,8 +6,7 @@ import 'package:fimber/fimber.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/appState.dart';
 import 'package:wase/models/programMode.dart';
-import 'package:wase/models/ship.dart';
-import 'package:wase/settings.dart';
+import 'package:wase/models/settings.dart';
 
 import 'loading/loaders.dart';
 
