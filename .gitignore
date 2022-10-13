@@ -212,3 +212,4 @@ chipper.config/chippertheme.lock
 *.hive
 
 *.lock
+/macos/Podfile

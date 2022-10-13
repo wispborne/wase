@@ -46,7 +46,8 @@ dependencies:
 
 dev_dependencies:
   json_serializable: ^6.5.0
-  # Use `flutter pub run build_runner watch --delete-conflicting-outputs`
+  # Use
+  #  flutter pub run build_runner watch --delete-conflicting-outputs
   build_runner: ^2.2.1
 
   flutter_test:

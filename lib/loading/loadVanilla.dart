@@ -44,16 +44,15 @@ void loadVanillaData(Directory gameDataPath, WidgetRef ref) async {
   var enums = ref.read(AppState.enums);
 
   final shipTimer = Stopwatch()..start();
-  final ships = loadShips(stockShipsDir);
-  Fimber.d("Took ${shipTimer.elapsed}ms to load vanilla ships.");
+  final ships = loadShips(stockShipsDir)
+    ..then((value) => Fimber.i("Took ${shipTimer.elapsed}ms to load ${value.length} vanilla ships."));
 
   final variantTimer = Stopwatch()..start();
-  loadVariants(stockVariantsDir);
-  Fimber.d("Took ${variantTimer.elapsed}ms to load vanilla variants.");
+  loadVariants(stockVariantsDir)..then((value) => Fimber.i("Took ${variantTimer.elapsed}ms to load ${value.length} vanilla variants."));
 
   cacheShipEnums((await ships).whereType<Ship>().toList(), enums);
 
-  Fimber.d("Loaded enums: $enums");
+  Fimber.i("Loaded enums: $enums");
 }
 
 void cacheShipEnums(List<Ship> ships, Map<String, Set<String>> enums) {

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -16,11 +15,11 @@ class Opening {
       dialogTitle: "Choose file",
     );
 
-    print(files?.files);
+    Fimber.d(files?.files.toString() ?? "");
     var firstFile = files?.files.first.name;
 
     if (firstFile == null) {
-      print("No files?");
+      Fimber.i("No files?");
     }
 
     var file = File(firstFile!);

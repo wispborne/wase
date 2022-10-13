@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wase/models/pair.dart';
+import 'package:wase/models/AlexMap.dart';
 import 'package:wase/models/variantWeapon.dart';
 
-
 part 'variant.freezed.dart';
+
 part 'variant.g.dart';
 
 @freezed
@@ -20,9 +20,8 @@ class Variant with _$Variant {
     @Default(1.0) final double quality,
     @Default([]) final List<String> permaMods,
     @Default([]) final List<String> wings,
-    @Default([]) final List<Pair<String, String>> modules,
+    @AlexMapConverter() @Default({}) final Map<String, dynamic> modules,
   }) = _Variant;
 
-  factory Variant.fromJson(Map<String, Object?> json)
-  => _$VariantFromJson(json);
+  factory Variant.fromJson(Map<String, Object?> json) => _$VariantFromJson(json);
 }
