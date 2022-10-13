@@ -2,7 +2,7 @@ import 'package:fimber/fimber.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'settings.freezed.dart';
+part '../generated/models/settings.freezed.dart';
 
 final appSettings = StateProvider<Settings>((ref) => Settings());
 

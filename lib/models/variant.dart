@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wase/models/AlexMap.dart';
+import 'package:wase/models/alexMapConverter.dart';
 import 'package:wase/models/variantWeapon.dart';
 
-part 'variant.freezed.dart';
+part '../generated/models/variant.freezed.dart';
 
-part 'variant.g.dart';
+part '../generated/models/variant.g.dart';
 
 @freezed
 class Variant with _$Variant {

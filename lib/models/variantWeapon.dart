@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'variantWeapon.freezed.dart';
-part 'variantWeapon.g.dart';
+part '../generated/models/variantWeapon.freezed.dart';
+part '../generated/models/variantWeapon.g.dart';
 
 @freezed
 class VariantWeapon with _$VariantWeapon {

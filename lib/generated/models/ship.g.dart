@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'ship.dart';
+part of '../../models/ship.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
