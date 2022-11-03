@@ -10,6 +10,9 @@ import 'package:wase/models/settings.dart';
 import 'package:wase/models/ship.dart';
 import 'package:wase/models/variant.dart';
 
+import '../models/shipEngineSlot.dart';
+import '../models/shipWeaponSlot.dart';
+
 void loadGameData(WidgetRef ref) async {
   var settings = ref.read(appSettings);
   final gameDir = settings.gameDir ?? defaultGamePath();
@@ -48,7 +51,19 @@ void loadVanillaData(Directory gameDataPath, WidgetRef ref) async {
     ..then((value) => Fimber.i("Took ${shipTimer.elapsed}ms to load ${value.length} vanilla ships."));
 
   final variantTimer = Stopwatch()..start();
-  loadVariants(stockVariantsDir)..then((value) => Fimber.i("Took ${variantTimer.elapsed}ms to load ${value.length} vanilla variants."));
+  loadVariants(stockVariantsDir)
+    .then((value) =>
+        Fimber.i("Took ${variantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDir."));
+
+  final fighterVariantTimer = Stopwatch()..start();
+  loadVariants(stockVariantsFightersDir)
+      .then((value) =>
+      Fimber.i("Took ${fighterVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsFightersDir."));
+
+  final droneVariantTimer = Stopwatch()..start();
+  loadVariants(stockVariantsDronesDir)
+      .then((value) =>
+      Fimber.i("Took ${droneVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDronesDir."));
 
   cacheShipEnums((await ships).whereType<Ship>().toList(), enums);
 
