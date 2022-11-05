@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wase/models/programMode.dart';
 import 'package:wase/models/ship.dart';
+import 'package:wase/models/shipSkin.dart';
 
 // final appState = StateProvider((ref) => AppState());
 
@@ -16,6 +17,10 @@ abstract class AppState {
 
   /// When loading vanilla data, save all enums so they can be shown as dropdowns in the UI later.
   static final enums = StateProvider<Map<String, Set<String>>>((ref) => {});
+  /// <String,Object>  skinHullId --> TStarfarerSkin
+  static final vanillaSkinsByHullId = StateProvider<Map<String, Set<ShipSkin>>>((ref) => {});
+  /// <String,TList>   hullId --> TList of skinHullIds (referencing the hullId)
+  static final vanillaHullSkinsAssoc = StateProvider<Map<String, Set<ShipSkin>>>((ref) => {});
 }
 
 extension SetAdding on Map<String, Set<String>> {

@@ -63,7 +63,9 @@ _$_ShipSkin _$$_ShipSkinFromJson(Map<String, dynamic> json) => _$_ShipSkin(
             ShipEngineSlotChange.fromJson(
                 const AlexMapConverter().fromJson(e as Object))),
       ),
-      coversColor: json['coversColor'] as String?,
+      coversColor: (json['coversColor'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ShipSkinToJson(_$_ShipSkin instance) =>

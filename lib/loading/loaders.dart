@@ -6,6 +6,8 @@ import 'package:wase/models/ship.dart';
 import 'package:wase/models/variant.dart';
 import 'package:yaml/yaml.dart';
 
+import '../models/shipSkin.dart';
+
 Future<Ship?> loadShip(File file) async {
   return Ship.fromJson(jsonDecode(await file.readAsString()) as Map<String, dynamic>);
 }
@@ -15,4 +17,10 @@ Future<Variant?> loadVariant(File file) async {
   var jsonEncodedYaml = json.encode(loadYaml(await file.readAsString()));
   Fimber.v(jsonEncodedYaml);
   return Variant.fromJson(jsonDecode(jsonEncodedYaml) as Map<String, dynamic>);
+}
+
+Future<ShipSkin?> loadShipSkin(File file) async {
+  var jsonEncodedYaml = json.encode(loadYaml(await file.readAsString()));
+  Fimber.v(jsonEncodedYaml);
+  return ShipSkin.fromJson(jsonDecode(jsonEncodedYaml) as Map<String, dynamic>);
 }

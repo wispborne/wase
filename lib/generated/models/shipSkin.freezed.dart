@@ -58,7 +58,7 @@ mixin _$ShipSkin {
   @AlexMapConverter()
   Map<String, ShipEngineSlotChange>? get engineSlotChanges =>
       throw _privateConstructorUsedError; //<String,TStarfarerShipEngineChange>  engine slot index (as string) --> TStarfarerShipEngine,
-  String? get coversColor => throw _privateConstructorUsedError;
+  List<int>? get coversColor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -98,7 +98,7 @@ abstract class $ShipSkinCopyWith<$Res> {
       @AlexMapConverter() Map<String, String>? builtInWeapons,
       List<int>? removeEngineSlots,
       @AlexMapConverter() Map<String, ShipEngineSlotChange>? engineSlotChanges,
-      String? coversColor});
+      List<int>? coversColor});
 }
 
 /// @nodoc
@@ -252,7 +252,7 @@ class _$ShipSkinCopyWithImpl<$Res> implements $ShipSkinCopyWith<$Res> {
       coversColor: coversColor == freezed
           ? _value.coversColor
           : coversColor // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<int>?,
     ));
   }
 }
@@ -291,7 +291,7 @@ abstract class _$$_ShipSkinCopyWith<$Res> implements $ShipSkinCopyWith<$Res> {
       @AlexMapConverter() Map<String, String>? builtInWeapons,
       List<int>? removeEngineSlots,
       @AlexMapConverter() Map<String, ShipEngineSlotChange>? engineSlotChanges,
-      String? coversColor});
+      List<int>? coversColor});
 }
 
 /// @nodoc
@@ -445,9 +445,9 @@ class __$$_ShipSkinCopyWithImpl<$Res> extends _$ShipSkinCopyWithImpl<$Res>
           : engineSlotChanges // ignore: cast_nullable_to_non_nullable
               as Map<String, ShipEngineSlotChange>?,
       coversColor: coversColor == freezed
-          ? _value.coversColor
+          ? _value._coversColor
           : coversColor // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as List<int>?,
     ));
   }
 }
@@ -486,7 +486,7 @@ class _$_ShipSkin implements _ShipSkin {
       final List<int>? removeEngineSlots,
       @AlexMapConverter()
           final Map<String, ShipEngineSlotChange>? engineSlotChanges,
-      this.coversColor})
+      final List<int>? coversColor})
       : _removeHints = removeHints,
         _addHints = addHints,
         _removeBuiltInMods = removeBuiltInMods,
@@ -496,7 +496,8 @@ class _$_ShipSkin implements _ShipSkin {
         _removeBuiltInWeapons = removeBuiltInWeapons,
         _builtInWeapons = builtInWeapons,
         _removeEngineSlots = removeEngineSlots,
-        _engineSlotChanges = engineSlotChanges;
+        _engineSlotChanges = engineSlotChanges,
+        _coversColor = coversColor;
 
   factory _$_ShipSkin.fromJson(Map<String, dynamic> json) =>
       _$$_ShipSkinFromJson(json);
@@ -652,8 +653,15 @@ class _$_ShipSkin implements _ShipSkin {
   }
 
 //<String,TStarfarerShipEngineChange>  engine slot index (as string) --> TStarfarerShipEngine,
+  final List<int>? _coversColor;
+//<String,TStarfarerShipEngineChange>  engine slot index (as string) --> TStarfarerShipEngine,
   @override
-  final String? coversColor;
+  List<int>? get coversColor {
+    final value = _coversColor;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -714,7 +722,7 @@ class _$_ShipSkin implements _ShipSkin {
             const DeepCollectionEquality()
                 .equals(other._engineSlotChanges, _engineSlotChanges) &&
             const DeepCollectionEquality()
-                .equals(other.coversColor, coversColor));
+                .equals(other._coversColor, _coversColor));
   }
 
   @JsonKey(ignore: true)
@@ -748,7 +756,7 @@ class _$_ShipSkin implements _ShipSkin {
         const DeepCollectionEquality().hash(_builtInWeapons),
         const DeepCollectionEquality().hash(_removeEngineSlots),
         const DeepCollectionEquality().hash(_engineSlotChanges),
-        const DeepCollectionEquality().hash(coversColor)
+        const DeepCollectionEquality().hash(_coversColor)
       ]);
 
   @JsonKey(ignore: true)
@@ -796,7 +804,7 @@ abstract class _ShipSkin implements ShipSkin {
       final List<int>? removeEngineSlots,
       @AlexMapConverter()
           final Map<String, ShipEngineSlotChange>? engineSlotChanges,
-      final String? coversColor}) = _$_ShipSkin;
+      final List<int>? coversColor}) = _$_ShipSkin;
 
   factory _ShipSkin.fromJson(Map<String, dynamic> json) = _$_ShipSkin.fromJson;
 
@@ -858,7 +866,7 @@ abstract class _ShipSkin implements ShipSkin {
   @AlexMapConverter()
   Map<String, ShipEngineSlotChange>? get engineSlotChanges;
   @override //<String,TStarfarerShipEngineChange>  engine slot index (as string) --> TStarfarerShipEngine,
-  String? get coversColor;
+  List<int>? get coversColor;
   @override
   @JsonKey(ignore: true)
   _$$_ShipSkinCopyWith<_$_ShipSkin> get copyWith =>

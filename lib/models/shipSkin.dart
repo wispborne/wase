@@ -41,7 +41,7 @@ class ShipSkin with _$ShipSkin {
     @AlexMapConverter()
         final Map<String, ShipEngineSlotChange>?
             engineSlotChanges, //<String,TStarfarerShipEngineChange>  engine slot index (as string) --> TStarfarerShipEngine,
-    final String? coversColor,
+    final List<int>? coversColor,
   }) = _ShipSkin;
 
   factory ShipSkin.fromJson(Map<String, Object?> json) => _$ShipSkinFromJson(json);

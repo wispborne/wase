@@ -20,3 +20,11 @@ MaterialColor createMaterialColor(Color color) {
 
   return MaterialColor(color.value, swatch);
 }
+
+extension IterableToMap<K, V> on Iterable<MapEntry<K, V>?> {
+  Map<K, V> toMap() => Map<K, V>.fromEntries(whereType());
+}
+
+extension FutureIterableToMap<K, V> on Future<Iterable<MapEntry<K, V>?>> {
+  Future<Map> toMap() async => then((value) => Map<K, V>.fromEntries(value.whereType()));
+}

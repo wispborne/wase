@@ -58,12 +58,15 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: SingleChildScrollView(child: Column(
         children: [
           Row(children: [const Expanded(child: WaseMenu())]),
-          Text(ref.watch(AppState.ship)?.toString() ?? "")
+          Text(ref.watch(AppState.ship)?.toString() ?? ""),
+          Text(ref.watch(AppState.enums).toString()),
+          Text(ref.watch(AppState.vanillaHullSkinsAssoc).toString()),
+          Text(ref.watch(AppState.vanillaSkinsByHullId).toString()),
         ],
-      ),
+      )),
     );
   }
 

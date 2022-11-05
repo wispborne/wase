@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:fimber/fimber.dart';
@@ -9,8 +10,10 @@ import 'package:wase/loading/loaders.dart';
 import 'package:wase/models/settings.dart';
 import 'package:wase/models/ship.dart';
 import 'package:wase/models/variant.dart';
+import 'package:wase/utils.dart';
 
 import '../models/shipEngineSlot.dart';
+import '../models/shipSkin.dart';
 import '../models/shipWeaponSlot.dart';
 
 void loadGameData(WidgetRef ref) async {
@@ -44,33 +47,56 @@ void loadVanillaData(Directory gameDataPath, WidgetRef ref) async {
   final stockHullmodsDir = Directory(p.join(path, "data/hullmods/"));
   final stockConfigDir = Directory(p.join(path, "data/config/"));
 
-  var enums = ref.read(AppState.enums);
-
   final shipTimer = Stopwatch()..start();
   final ships = loadShips(stockShipsDir)
     ..then((value) => Fimber.i("Took ${shipTimer.elapsed}ms to load ${value.length} vanilla ships."));
 
   final variantTimer = Stopwatch()..start();
-  loadVariants(stockVariantsDir)
-    .then((value) =>
-        Fimber.i("Took ${variantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDir."));
+  loadVariants(stockVariantsDir).then((value) =>
+      Fimber.i("Took ${variantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDir."));
 
   final fighterVariantTimer = Stopwatch()..start();
-  loadVariants(stockVariantsFightersDir)
-      .then((value) =>
-      Fimber.i("Took ${fighterVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsFightersDir."));
+  loadVariants(stockVariantsFightersDir).then((value) => Fimber.i(
+      "Took ${fighterVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsFightersDir."));
 
   final droneVariantTimer = Stopwatch()..start();
-  loadVariants(stockVariantsDronesDir)
-      .then((value) =>
-      Fimber.i("Took ${droneVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDronesDir."));
+  loadVariants(stockVariantsDronesDir).then((value) => Fimber.i(
+      "Took ${droneVariantTimer.elapsed}ms to load ${value.length} vanilla variants from $stockVariantsDronesDir."));
 
-  cacheShipEnums((await ships).whereType<Ship>().toList(), enums);
+  final shipSkinTimer = Stopwatch()..start();
+  final shipSkinsFuture = loadShipSkins(stockSkinsDir).then((value) {
+    Fimber.i("Took ${shipSkinTimer.elapsed}ms to load ${value.length} vanilla ship skins from $stockSkinsDir.");
+    return value;
+  });
+
+  final shipSkins = await shipSkinsFuture;
+  ref.read(AppState.vanillaSkinsByHullId.notifier).update((state) => cacheShipSkins((shipSkins).toList()));
+
+  var enums = cacheShipEnums((await ships).whereType<Ship>().toList());
+  ref.read(AppState.enums.notifier).update((state) => enums);
 
   Fimber.i("Loaded enums: $enums");
 }
 
-void cacheShipEnums(List<Ship> ships, Map<String, Set<String>> enums) {
+Map<String, Set<ShipSkin>> cacheShipSkins(List<ShipSkin> skins) {
+  final skinsByHull = <String, Set<ShipSkin>>{};
+
+  for (var skin in skins) {
+    if (skin.skinHullId != null) {
+      if (skinsByHull[skin.skinHullId!] == null) {
+        skinsByHull[skin.skinHullId!] = <ShipSkin>{};
+      }
+
+      skinsByHull[skin.skinHullId!]!.add(skin);
+    }
+  }
+
+  return skinsByHull;
+}
+
+Map<String, Set<String>> cacheShipEnums(List<Ship> ships) {
+  final Map<String, Set<String>> enums = {};
+
   for (Ship ship in ships) {
     try {
       enums.createAndAdd("ship.hullSize", ship.hullSize);
@@ -92,6 +118,8 @@ void cacheShipEnums(List<Ship> ships, Map<String, Set<String>> enums) {
       Fimber.e("Failed to load $ship", ex: e);
     }
   }
+
+  return enums;
 }
 
 Future<List<Ship?>> loadShips(Directory folder) async {
@@ -114,6 +142,23 @@ Future<List<Variant?>> loadVariants(Directory folder) async {
       return Future.value(null);
     });
   }).toList();
+}
+
+Future<List<ShipSkin>> loadShipSkins(Directory folder) async {
+  Fimber.i("Loading ship skins from $folder");
+  return folder
+      .list(recursive: true)
+      .where((event) => p.extension(event.path) == ".skin")
+      .asyncMap((file) async {
+        Fimber.d("Loading ship skin ${file.path}");
+        return loadShipSkin(File(file.path)).onError((error, stackTrace) {
+          Fimber.w("Failed to load ${file.path}", ex: error, stacktrace: stackTrace);
+          return Future.value(null);
+        });
+      })
+      .where((skin) => skin != null)
+      .map((skin) => skin!)
+      .toList();
 }
 
 String? defaultGamePath() {
