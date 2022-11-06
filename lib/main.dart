@@ -12,7 +12,7 @@ import 'package:wase/utils.dart';
 import 'menu.dart';
 
 void main() {
-  Fimber.plantTree(DebugTree.elapsed(logLevels: [  "I", "W", "E"], useColors: true));
+  Fimber.plantTree(DebugTree.elapsed(logLevels: ["I", "W", "E"], useColors: true));
   Fimber.i("Logging started.");
   Fimber.i("Platform: ${Platform.operatingSystem} ${Platform.operatingSystemVersion}.");
   runApp(ProviderScope(observers: [SettingSaver()], child: const MyApp()));
@@ -32,14 +32,16 @@ class MyApp extends ConsumerWidget {
       themeMode: ThemeMode.dark,
       darkTheme: useCustomDarkTheme
           ? ThemeData.from(
-              colorScheme: ColorScheme.dark(primary: pink, background: Colors.grey[900]!, surface: Colors.grey[850]!), useMaterial3: true)
+              colorScheme: ColorScheme.dark(primary: pink, background: Colors.grey[900]!, surface: Colors.grey[850]!),
+              useMaterial3: true)
           : ThemeData.dark(useMaterial3: true),
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: orange,
       ),
       home: CallbackShortcuts(
-          bindings: WaseShortcutBindings.getShortcuts(ref), child: const Focus(autofocus: true, child: MyHomePage(title: 'W.A.S.E'))),
+          bindings: WaseShortcutBindings.getShortcuts(ref),
+          child: const Focus(autofocus: true, child: MyHomePage(title: 'W.A.S.E'))),
     );
   }
 }
@@ -54,17 +56,19 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(child: Column(
+      body: SingleChildScrollView(
+          child: Column(
         children: [
-          Row(children: [const Expanded(child: WaseMenu())]),
-          Text(ref.watch(AppState.ship)?.toString() ?? ""),
-          Text(ref.watch(AppState.enums).toString()),
-          Text(ref.watch(AppState.vanillaHullSkinsAssoc).toString()),
-          Text(ref.watch(AppState.vanillaSkinsByHullId).toString()),
+          Row(children: const [Expanded(child: WaseMenu())]),
+          Text("Current ship:${ref.watch(AppState.ship)}"),
+          Text("\nEnums: ${ref.watch(AppState.enums)}"),
+          Text("\nVanilla variants by variant id: ${ref.watch(AppState.vanillaVariantsByVariantId)}"),
+          Text("\nVanilla skins by skin hull id: ${ref.watch(AppState.vanillaSkinsByHullId)}"),
+          Text("\nVanilla skin hull ids by hull id: ${ref.watch(AppState.vanillaHullSkinsAssoc)}"),
+          Text("\nVanilla ships:${ref.watch(AppState.vanillaShipsByHullId)}"),
         ],
       )),
     );
