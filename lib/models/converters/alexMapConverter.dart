@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+/// Handles maps that are defined in json either as `[ { key: value } ]` or `{ key: value }`.
 class AlexMapConverter implements JsonConverter<Map<String, dynamic>, Object> {
   const AlexMapConverter();
 

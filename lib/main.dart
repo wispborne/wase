@@ -68,6 +68,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
           Text("\nVanilla variants by variant id: ${ref.watch(AppState.vanillaVariantsByVariantId)}"),
           Text("\nVanilla skins by skin hull id: ${ref.watch(AppState.vanillaSkinsByHullId)}"),
           Text("\nVanilla skin hull ids by hull id: ${ref.watch(AppState.vanillaHullSkinsAssoc)}"),
+          Text("\nVanilla weapons: ${ref.watch(AppState.weaponsById)}"),
           Text("\nVanilla ships:${ref.watch(AppState.vanillaShipsByHullId)}"),
         ],
       )),

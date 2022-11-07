@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wase/models/alexMapConverter.dart';
+import 'package:wase/models/converters/alexMapConverter.dart';
 import 'package:wase/models/shipEngineSlotChange.dart';
 import 'package:wase/models/shipWeaponSlotChange.dart';
 

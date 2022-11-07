@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wase/models/alexMapConverter.dart';
+import 'package:wase/models/converters/alexMapConverter.dart';
 import 'package:wase/models/variantWeapon.dart';
 
 part '../generated/models/variant.freezed.dart';
