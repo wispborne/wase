@@ -67,7 +67,7 @@ void loadVanillaData(Directory gameDataPath, WidgetRef ref) async {
   final weaponsTimer = Stopwatch()..start();
   final weaponsFuture = loadWeapons(stockWeaponsDir)
     ..then((value) =>
-        Fimber.i("Took ${weaponsTimer.elapsed}ms to load ${value.length} vanilla weapons from $stockSkinsDir."));
+        Fimber.i("Took ${weaponsTimer.elapsed}ms to load ${value.length} vanilla weapons from $stockWeaponsDir."));
 
   //// Process loaded stuff
   // Add ship skins
@@ -171,7 +171,7 @@ Future<List<Ship?>> loadShips(Directory folder) async {
 /// `load_stock_variant`
 Future<List<Variant?>> loadVariants(Directory folder) async {
   Fimber.i("Loading variants from $folder");
-  return folder.list(recursive: true).where((event) => p.extension(event.path) == ".variant").asyncMap((file) async {
+  return folder.list(recursive: true).where((event) => p.extension(event.path) == ".variant").take(5).asyncMap((file) async {
     Fimber.d("Loading variant ${file.path}");
     return loadVariant(File(file.path)).onError((error, stackTrace) {
       Fimber.w("Failed to load ${file.path}", ex: error, stacktrace: stackTrace);
